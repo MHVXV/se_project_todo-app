@@ -1,13 +1,14 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+This project is a simple To-Do Checklist app.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+This app allows users to add to-do items to a checklist, and optionally assign a dute date to each item.
 
 ## Technology
 
+Technologies used in this project include HTML, CSS, and JavaScript.
 Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
 
 ## Deployment

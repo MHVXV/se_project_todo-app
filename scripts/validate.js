@@ -1,3 +1,5 @@
+import { validationConfig } from "../utils/constants.js";
+
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElementId = `#${inputElement.id}-error`;
   const errorElement = formElement.querySelector(errorElementId);
@@ -41,6 +43,7 @@ const toggleButtonState = (inputList, buttonElement, settings) => {
     buttonElement.classList.remove(settings.inactiveButtonClass);
     buttonElement.disabled = false;
   }
+  
 };
 
 const setEventListeners = (formElement, settings) => {
@@ -70,3 +73,5 @@ const enableValidation = (settings) => {
 };
 
 enableValidation(validationConfig);
+
+export { toggleButtonState }

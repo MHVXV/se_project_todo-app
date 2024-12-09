@@ -56,3 +56,6 @@ initialTodos.forEach((item) => {
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
+
+const todoReset = new FormValidator(validationConfig, addTodoForm)  
+todoReset.resetValidation();

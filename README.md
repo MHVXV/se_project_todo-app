@@ -9,10 +9,13 @@ This app allows users to add to-do items to a checklist, and optionally assign a
 ## Technology
 
 Technologies used in this project include HTML, CSS, and JavaScript.
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+
+![Initial load](./images/Initial%20load.png)
+![Create to-do](./images/Create%20to-do.png)
+![New list](./images/New%20list.png)
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-[TODO PROJECT LINK][https://mhvxv.github.io/se_project_todo-app/]
+[TODO PROJECT LINK](https://mhvxv.github.io/se_project_todo-app/)

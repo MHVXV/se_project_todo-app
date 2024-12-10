@@ -62,7 +62,7 @@ _hideInputError = (inputElement) => {
       
     };
 
-_setEventListeners(settings) {
+_setEventListeners() {
  
     
       this._toggleButtonState(this._inputList);
@@ -83,6 +83,7 @@ enableValidation() {
     }
 
     resetValidation() {
+      this._formEl.reset();
       this._toggleButtonState();
       this._inputList.forEach((inputElement) => {
         this._hideInputError(inputElement);
@@ -94,7 +95,5 @@ enableValidation() {
     this._submitButtonSelector.disabled = true;
   }
  }
-
-
 
  export default FormValidator;

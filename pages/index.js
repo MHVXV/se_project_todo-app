@@ -12,7 +12,18 @@ const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (inputValues) => {
+    // evt.preventDefault();
+    const name = inputValues.name.value;
+    const dateInput = inputValues.date.value;
+    const date = new Date(dateInput);
+    const id = uuidv4();
+    const item = { name, date, id };
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    renderTodo(item);
+    newTodoValidator.resetValidation();
+    addTodoPopup.close();
+  },
 });
 
 addTodoPopup.setEventListeners();
@@ -39,24 +50,6 @@ function renderTodo(item) {
   const todo = generateTodo(item);
   section.addItem(todo);
 }
-
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const id = uuidv4();
-  const item = { name, date, id };
-
-  renderTodo(item);
-
-  newTodoValidator.resetValidation();
-
-  addTodoPopup.close();
-});
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();

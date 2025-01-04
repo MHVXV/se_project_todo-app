@@ -14,8 +14,8 @@ const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
   handleFormSubmit: (inputValues) => {
     // evt.preventDefault();
-    const name = inputValues.name.value;
-    const dateInput = inputValues.date.value;
+    const name = inputValues.name;
+    const dateInput = inputValues.date;
     const date = new Date(dateInput);
     const id = uuidv4();
     const item = { name, date, id };

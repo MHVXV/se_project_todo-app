@@ -1,17 +1,21 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import FormValidator from "../components/FormValidator.js";
 import Todo from "../components/Todo.js";
-
 import Section from "../components/Section.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
-const addTodoPopup = document.querySelector("#add-todo-popup");
+const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
-const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
-const todoTemplate = document.querySelector("#todo-template");
-const todosList = document.querySelector(".todos__list");
+const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
+
+const addTodoPopup = new PopupWithForm({
+  popupSelector: "#add-todo-popup",
+  handleFormSubmit: () => {},
+});
+
+addTodoPopup.setEventListeners();
 
 const section = new Section({
   items: initialTodos,
@@ -19,32 +23,22 @@ const section = new Section({
   containerSelector: ".todos__list",
 });
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
+section.renderItems();
 
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
-
-const generateTodo = (data) => {
+function generateTodo(data) {
   const todo = new Todo(data, "#todo-template");
   const todoElement = todo.getView();
   return todoElement;
-};
+}
 
 addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopup);
+  addTodoPopup.open();
 });
 
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopup);
-});
-
-// function renderTodo(item) {
-//   const todo = generateTodo(item);
-//   todosList.append(todo); //possibly remove all of this too
-// }
+function renderTodo(item) {
+  const todo = generateTodo(item);
+  section.addItem(todo);
+}
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -61,13 +55,8 @@ addTodoForm.addEventListener("submit", (evt) => {
 
   newTodoValidator.resetValidation();
 
-  closeModal(addTodoPopup);
+  addTodoPopup.close();
 });
-
-initialTodos.forEach((item) => {
-  renderTodo(item);
-}); //possibly remove this code once you update the code above
-//use addItem method instead of this
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
